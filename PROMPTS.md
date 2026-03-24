@@ -13,6 +13,25 @@
 
 ---
 
+## Create the PRD
+
+```
+Create a PRD in markdown (PRD.md) that defines a 3-level full-stack web application (front-end, middleware, back-end) for a membership site that displays campsites members have reviewed. I need a React SPA that connects to an API Gateway (edge) via a Python BFF, which connects to a Python backend service with a database. Use the FastAPI framework, Redis, and PostgreSQL. The artifacts will be deployed using Docker images. In the PRD, define the Product Overview, Architecture, Functional and Non-Functional Requirements, the Project Structure, and any other relevant sections. This project is intended to be written solely by an AI without human intervention. There must be no code changes between running the code for ve/test and production. Runtime configuration is only through .env and *.json files. The project must be architected for running on a single dev computer for development and testing. Yet individual components are deployed to separate front-end and back-end servers via SSH.
+- The PRD is intended for AI to use when creating supplemental docs and for implementers. Create a README.md intended for human non-technical integrators.
+- Users are first presented with a login and signup page. Users must supply their email address.
+- Once logged in, they can see the SPA that shows campsites and their ratings. A user can add a new campsite via the “+” button, which lets them name the campsite, specify its location, set campsite pricing, add general info, and post a picture.
+- Users can rate a campsite by selecting a thumbs-up or thumbs-down button and leaving comments.
+- All user ratings for a campsite can be reviewed by selecting the campsite’s “Review” button
+- The average review for a campsite is shown next to the campsite
+- Two levels of users can be created, admin and subscriber
+- Admin users can remove individual subscribers
+- Create scripts for the following actions:
+-- setup.sh: installs required programs and dependencies for building and testing the app
+-- build.sh: script to build and package the 3 docker images, the default is a dev build  
+-- test.sh: script to run unit and integration tests across the entire stack
+
+```
+
 ## Create Supplemental Docs from PRD
 ```
 Read the PRD and use the .cursor/rules/generate.mdc file to create the implementation plan and all other supporting documentation required to start the implementation.

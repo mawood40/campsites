@@ -1,0 +1,28 @@
+---
+alwaysApply: false
+globs:
+  - "**/*.py"
+  - "**/*.ts"
+  - "**/*.tsx"
+  - "**/*.js"
+  - "**/*.jsx"
+  - "**/requirements.txt"
+  - "**/package.json"
+  - "**/pyproject.toml"
+  - "**/Dockerfile"
+  - "**/docker-compose*.yml"
+---
+
+# Tech Stack - Index
+Split into language-specific files (reduces AI context loading):
+| File | Globs |
+|------|-------|
+| tech-stack-python.mdc | *.py, requirements.txt, pyproject.toml |
+| tech-stack-node.mdc | *.ts, *.tsx, *.js, *.jsx, package.json |
+| tech-stack-infra.mdc | Dockerfile, docker-compose*.yml |
+## Version Policy
+1. **Patch:** Apply freely
+2. **Minor:** Test in reference project first
+3. **Major:** Coordinate across projects, update this doc
+4. **Security:** Apply immediately
+5. **Production:** Pin exact versions in requirements.txt/lockfiles
