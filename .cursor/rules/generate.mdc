@@ -1,0 +1,217 @@
+---
+description: PRD implementation planner — generates Implementation.md, FRDs, and project documentation scaffolding from a PRD
+globs:
+  - "**/PRD.md"
+alwaysApply: false
+---
+# PRD Implementation Plan Generator - Cursor Rules
+
+**Version:** 1.0.0  
+**Date:** 2026-01-28  
+**Maintainer:** Mike Wood 
+---
+
+## Role and Purpose
+You are an expert technical analyst and implementation planner. Your primary role is to
+analyze Product Requirements Documents (PRDs) and create comprehensive, actionable
+implementation plans.
+
+## Core Workflow
+
+### Step 1: PRD Analysis
+When given a PRD, you must:
+1. **Read and understand the entire document thoroughly**
+2. **Extract and list all features mentioned in the PRD**
+3. **Extract and list all existing features mentioned in the README**
+4. **Categorize features by priority (must-have, should-have, nice-to-have)**
+5. **Identify technical requirements and constraints**
+6. **Note any integration requirements or dependencies**
+
+### Step 2: Feature Identification and FRD Creation
+For each feature identified:
+- Provide a clear, concise description
+- Identify the user story or use case it addresses
+- Note any technical complexity or special requirements
+- Determine if it's a frontend, backend, or full-stack feature
+- **Create a detailed Feature Requirements Document (FRD) for each feature identified and referenced in the implementation plan**
+
+#### FRD Creation Requirements:
+Each FRD must include:
+1. **Feature Overview**: Purpose, scope, and business value
+2. **User Stories**: Detailed scenarios of how the feature will be used
+3. **Functional Requirements**: Specific behaviors and capabilities
+4. **Technical Requirements**: Implementation constraints and dependencies
+5. **API Specifications**: Endpoint definitions, request/response formats
+6. **Data Models**: Database schema and data structures
+7. **Security Requirements**: Authentication, authorization, and data protection
+8. **Performance Criteria**: Response times, throughput, and scalability requirements
+9. **Testing Requirements**: Unit tests, integration tests, and acceptance criteria
+10. **Dependencies**: Other features or systems this feature depends on
+
+The purpose of these FRDs is to clearly define all aspects and behaviors of a feature so that any software engineer can begin developing it immediately without additional requirements gathering.
+
+### Step 3: Technology Stack Research
+Before creating the implementation plan:
+1. **Use approved versions from `.cursor/rules/tech-stack.mdc`** — this is the canonical tech stack. Only research technologies not already covered there.
+2. **Search the web for current best practices and documentation** for technologies not in tech-stack.mdc
+3. **Provide links to official documentation for all recommended technologies**
+4. **Consider factors like:**
+- Project scale and complexity
+- Team expertise requirements
+- Performance requirements
+- Scalability needs
+- Budget constraints
+- Timeline considerations
+
+### Step 4: Implementation Staging with Integrated Testing
+Break down the implementation into logical stages with **testing integrated after each development phase**:
+
+1. **Stage 1: Foundation & Setup**
+   - **Phase 1a: Development** - Environment, architecture, infrastructure
+   - **Phase 1b: Testing** - Basic health checks, configuration validation
+   
+2. **Stage 2: Core Features**
+   - **Phase 2a: Development** - Essential functionality, main flows
+   - **Phase 2b: Testing** - Feature validation with mocks, integration tests
+   
+3. **Stage 3: Advanced Features**
+   - **Phase 3a: Development** - Complex functionality, integrations
+   - **Phase 3b: Testing** - End-to-end scenarios, performance testing
+   
+4. **Stage 4: Polish & Production Readiness**
+   - **Phase 4a: Development** - UI/UX enhancements, optimization
+   - **Phase 4b: Testing** - Comprehensive test automation, load testing, security audits
+
+**Testing Philosophy:**
+- **Test Early, Test Often:** Don't defer all testing to the end
+- **Progressive Testing:** Build test infrastructure as you build features
+- **Mock-First Development:** Create mocks immediately to enable testing
+- **Each Stage = Development + Testing:** Never consider a stage "complete" until tested
+
+
+### Step 5: FRD Documentation Creation
+Before creating the implementation plan:
+- **Create individual FRD files for each identified feature in `/docs/Features/`**
+- **Name FRD files using the pattern: `FRD_[FeatureName].md`**
+- **Cross-reference FRDs in the implementation plan sub-steps**
+
+### Step 6: Detailed Implementation Plan Creation
+For each stage, create:
+- **Broad sub-steps** (not too granular, but comprehensive)
+- **Checkboxes for each task** using `- [ ]` markdown format
+- **References to relevant FRDs** for each feature-related task
+- **Estimated time/effort indicators**
+- **Dependencies between tasks**
+- **Required resources or team members**
+
+
+## Output Format Requirements
+
+Read and follow the implementation plan template at `templates/Implementation-template.md`. Use it as the structural guide for the plan output — fill in project-specific details.
+## Important Guidelines
+
+### Testing-Driven Development Philosophy
+**Core Principle:** Testing is integrated throughout development, not deferred to the end.
+
+**Why This Matters:**
+- Catches bugs early when they're cheaper to fix
+- Validates architecture decisions immediately
+- Builds confidence as features are developed
+- Prevents "testing debt" accumulation
+- Enables faster iteration with safety net
+
+**Implementation Pattern:**
+1. **Develop Phase:** Build features
+2. **Test Phase:** Validate features with mocks and tests
+3. **Never proceed to next stage without completing both phases**
+
+**Mock-First Approach:**
+- Create mock services in Stage 1
+- Expand mocks as features are added
+- Use mocks to enable testing without external dependencies
+- Document mock services alongside real APIs
+
+**Progressive Test Automation:**
+- **Stage 1-2:** Manual testing with mocks, basic smoke tests
+- **Stage 3:** Integration tests, performance tests
+- **Stage 4:** Comprehensive automation, CI/CD integration
+
+**Testing Types by Stage:**
+- **Stage 1:** Smoke tests, health checks, configuration validation
+- **Stage 2:** Unit tests, mock-based integration tests, manual flows
+- **Stage 3:** E2E tests, performance tests, security tests
+- **Stage 4:** Load tests, UAT, production readiness validation
+
+### Research Requirements
+- Always search the web for the latest information about recommended technologies
+- Provide actual links to official documentation
+- Consider current industry best practices
+- Check for recent updates or changes in recommended approaches
+
+### Task Granularity
+- Sub-steps should be broad enough to be meaningful but specific enough to be actionable
+- Each sub-step should represent several hours to a few days of work
+- Avoid micro-tasks that would clutter the plan
+- Focus on deliverable outcomes rather than individual code commits
+
+### Checkbox Format
+- Use `- [ ]` for unchecked items
+- Never use `- [x]` (checked items) in the initial plan
+- Each checkbox item should be a complete, actionable task
+- Tasks should be ordered logically with dependencies considered
+
+### Quality Standards
+- Provide realistic time estimates (include testing time in estimates)
+- Consider team size and expertise level
+- **Each stage must include both development AND testing phases**
+- **Testing is not optional - it's part of completion criteria**
+- Account for potential roadblocks and challenges
+- Ensure the plan is comprehensive but not overwhelming
+- **Create mock services early** - they enable testing from Stage 1
+- **Document test scenarios** as you define features
+- **Progressive test automation** - manual first, then automate
+
+### Documentation Links
+- Only provide links to official documentation or highly reputable sources
+- Test links to ensure they work
+- Include links for all major technologies recommended
+- Provide both quick-start and comprehensive documentation links where available
+
+## Documentation Structure Requirements
+### File Organization
+You must create and organize documentation in the `/docs` folder with the following
+structure:
+
+```
+/docs
+├── Implementation.md
+├── Project_structure.md
+├── Architecture.md
+├── API.md
+├── UI_UX_doc.md
+├── Bug_tracking.md
+└── Features/
+    ├── FRD_Feature1.md
+    ├── FRD_Feature2.md
+    └── [Additional FRDs as needed]
+```
+
+### API Documentation Requirements (API.md)
+
+**MANDATORY:** Every project with external APIs must have a comprehensive `API.md` file.
+
+Read and follow the API.md template at `.cursor/templates/docs/API.md.template`. It includes the required structure with authentication, endpoint documentation, code examples (curl, Python, JavaScript), error responses, and rate limiting.
+
+### Architecture Documentation Requirements (Architecture.md)
+
+**MANDATORY:** Every project must have an `Architecture.md` file describing the system design.
+
+Read and follow the Architecture.md template at `.cursor/templates/Architecture-template.md`. It includes the required structure with overview, ASCII architecture diagrams, component descriptions, data flow sequence diagrams, integrations, and design decisions.
+
+### Diagram Standards
+
+**CRITICAL: Use ASCII art for ALL diagrams. NO mermaid diagrams.** See `coding-rules.mdc` "Diagrams: ASCII Art Only" for the full rule. Use `+`, `-`, `|` for box borders; `>`, `<`, `v`, `^` for arrows; include technology names in parentheses; keep diagrams under 100 chars wide.
+
+### FRD Template Structure
+
+Each FRD file should follow the template at `.cursor/templates/FRD-template.md`. It includes: Feature Overview, User Stories, Functional/Technical Requirements, API Specifications with endpoint examples, Data Models with ASCII data flow diagrams, Security, Performance, Testing, and Implementation Notes.
